@@ -2,7 +2,8 @@ import processing.core.PApplet;
 
 /**
  * Template for programs with Processing graphics output.
- * @author Your Name
+ * @author Keegan
+ * @author Brianna
  */
 public class Sketch extends PApplet {
 
