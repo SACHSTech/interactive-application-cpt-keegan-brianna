@@ -5,8 +5,9 @@ import processing.core.PApplet;
  * @author Your Name
  */
 public class Sketch extends PApplet {
-    int rectX = (int) random(40, 360);
-    int rectY = -20;    
+
+    int[] rectX = new int [70];
+    int[] rectY = new int [70];
 
     public static void main(String[] args) {
         PApplet.main("Sketch");
@@ -19,21 +20,30 @@ public class Sketch extends PApplet {
 
     @Override
     public void setup() {
-        
+        makeRectangle(); // In setup to help get each rectangle from the array
     }
 
     @Override
     public void draw() {
         background(244);
-        fallingRectangle();
+        fallingRectangle(3);
 
     }
+    /**
+     * Creates multiple rectangles from 0-9 and gives it a random x and y value. The -400 y is so the blocks spawn at different heights and fall at different levels
+     */
+    private void makeRectangle() {
+         for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++) {
+            rectX[rectMultiple] = (int) random(0, 440);
+            rectY[rectMultiple] = (int) random(-1500, 0);
+        }
+    }
+    private void fallingRectangle(int speed) {
+        for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++){
+            rect(rectX[rectMultiple], rectY[rectMultiple], 40, 20);
+            rectY[rectMultiple] += speed;
+        }
 
-    /** Additional helper methods below */
-    private void fallingRectangle() {
-            rect(rectX, rectY, 40, 20);
-            if (rectY < 620){
-                rectY += 10;
-            }
+
     }
 }
