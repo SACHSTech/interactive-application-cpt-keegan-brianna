@@ -9,6 +9,8 @@ public class Sketch extends PApplet {
 
     int[] rectX = new int [70];
     int[] rectY = new int [70];
+    int cauldronX = 300;
+    int cauldronY = 350;
 
     public static void main(String[] args) {
         PApplet.main("Sketch");
@@ -28,7 +30,9 @@ public class Sketch extends PApplet {
     public void draw() {
         background(244);
         fallingRectangle(3);
-        cauldron(300,350);
+        cauldron();
+        moveCauldron();
+
 
     }
     /**
@@ -54,22 +58,32 @@ public class Sketch extends PApplet {
 
     }
 
-    public void cauldron(int x, int y)
+    public int cauldron( )
     {
+      
         //pot
         noStroke();
         fill(42, 40, 46);
-        circle(x,y,100);
-        ellipse(x,y-40,120, 30);
+        circle(cauldronX,cauldronY,100);
+        ellipse(cauldronX,cauldronY-40,120, 30);
         //content
         noStroke();
         fill(250,250,250);
-        ellipse(x, y-40, 90, 20);
+        ellipse(cauldronX, cauldronY-40, 90, 20);
+        return cauldronX;
     }
 
     public void moveCauldron()
     {
-            if(keyPre)
+            if(keyPressed && (key == 'a' || key == CODED && keyCode == LEFT) && cauldronX >= 50)
+            {
+                cauldronX -= 5;
+            }
+
+            if(keyPressed && (key == 'd' || key == CODED && keyCode == RIGHT) && cauldronX <= 550)
+            {
+                cauldronX += 5;
+            }
     }
 
 }
