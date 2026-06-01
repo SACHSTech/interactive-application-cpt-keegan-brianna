@@ -9,6 +9,8 @@ public class Sketch extends PApplet {
 
     int[] rectX = new int [10];
     int[] rectY = new int [10];
+    int[] rectXSpecial = new int [1];
+    int[] rectYSpecial = new int [1];
     int cauldronX = 300;
     int cauldronY = 350;
     int score = 0;
@@ -35,6 +37,8 @@ public class Sketch extends PApplet {
         moveCauldron();
         collectObjects();
 
+        fallingRectangleSpecial(4);
+
 
     }
     /**
@@ -59,7 +63,26 @@ public class Sketch extends PApplet {
             rect(rectX[rectMultiple], rectY[rectMultiple], 40, 20); // creates the rectangle
             rectY[rectMultiple] += speed;
         }
+    
 
+    }
+
+    private void rectangleSpawnLocationSpecial() {
+        fill(255, 0 ,0);
+         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
+
+
+            rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
+            rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
+        }
+    }
+    private void fallingRectangleSpecial(int speedSpecial) {
+        fill(255, 0, 0);
+        for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
+            rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
+            rectYSpecial[rectMultipleSpecial] += speedSpecial;
+        }
+    
 
     }
 
@@ -73,6 +96,19 @@ public class Sketch extends PApplet {
                 // Respawn rectangle at top so it doesn't continue falling
                 rectY[rectMultiple] = (int) random(-1500, 0);
                 rectX[rectMultiple] = (int) random(0, width / 40) * 40;
+
+            }
+
+        }
+
+        for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
+            if (rectYSpecial[rectMultipleSpecial] >= 290 && rectYSpecial[rectMultipleSpecial] <= 320 && rectXSpecial[rectMultipleSpecial] >= cauldronX - 60 && rectXSpecial[rectMultipleSpecial] <= cauldronX + 60) {
+
+                score+= 5;
+
+                // Respawn rectangle at top so it doesn't continue falling
+                rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
+                rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
 
             }
         }
