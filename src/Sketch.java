@@ -16,6 +16,7 @@ public class Sketch extends PApplet {
     int score = 0;
     int[] powerUpColors = new int[4]; //array for all 4 of the possible powerUp colors 
     int randomColor;
+    int[] powerUpPoints = new int[4];// array to assign a specific amount of points to each color variation of powerUp
     
     
 
@@ -36,6 +37,12 @@ public class Sketch extends PApplet {
         powerUpColors[1] = color(0, 255, 0);   // Green
         powerUpColors[2] = color(0, 0, 255);   // Blue
         powerUpColors[3] = color(255, 255, 0); // Yellow
+
+        powerUpPoints[0] = 2;   // Red
+        powerUpPoints[1] = 4;  // Green
+        powerUpPoints[2] = 6;  // Blue 
+        powerUpPoints[3] = 8;  // Yellow 
+
         randomColor = (int) random(0,powerUpColors.length);// uses random to get a random color from the powerUpColor array
 
         rectangleSpawnLocation(); // In setup to help get each rectangle from the array
@@ -83,18 +90,22 @@ public class Sketch extends PApplet {
         
          for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
 
-
             rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
             rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
         }
     }
     private void fallingRectangleSpecial(int speedSpecial) {
-        fill(powerUpColors[randomColor]); //fills it thta specific color
+       randomColor = (int) random(0,powerUpColors.length);
+       
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
+                       
+
             rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
             rectYSpecial[rectMultipleSpecial] += speedSpecial;
         }
+        //its flashing 
     
+         fill(powerUpColors[randomColor]); //fills it thta specific color
 
     }
 
@@ -116,11 +127,13 @@ public class Sketch extends PApplet {
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
             if (rectYSpecial[rectMultipleSpecial] >= 290 && rectYSpecial[rectMultipleSpecial] <= 320 && rectXSpecial[rectMultipleSpecial] >= cauldronX - 60 && rectXSpecial[rectMultipleSpecial] <= cauldronX + 60) {
 
-                score+= 5;
+                score+= powerUpPoints[randomColor]; //adds the amt of points designated to that color
 
                 // Respawn rectangle at top so it doesn't continue falling
                 rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
                 rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
+                randomColor = (int) random(0,powerUpColors.length);
+
 
             }
         }
