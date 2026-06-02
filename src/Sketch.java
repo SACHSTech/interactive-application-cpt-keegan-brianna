@@ -14,6 +14,10 @@ public class Sketch extends PApplet {
     int cauldronX = 300;
     int cauldronY = 350;
     int score = 0;
+    int[] powerUpColors = new int[4]; //array for all 4 of the possible powerUp colors 
+    int randomColor;
+    
+    
 
     public static void main(String[] args) {
         PApplet.main("Sketch");
@@ -26,8 +30,16 @@ public class Sketch extends PApplet {
 
     @Override
     public void setup() {
+        
+        //powerup color master list 
+        powerUpColors[0] = color(255, 0, 0);   // Red
+        powerUpColors[1] = color(0, 255, 0);   // Green
+        powerUpColors[2] = color(0, 0, 255);   // Blue
+        powerUpColors[3] = color(255, 255, 0); // Yellow
+        randomColor = (int) random(0,powerUpColors.length);// uses random to get a random color from the powerUpColor array
+
         rectangleSpawnLocation(); // In setup to help get each rectangle from the array
-    }
+        }
 
     @Override
     public void draw() {
@@ -68,7 +80,7 @@ public class Sketch extends PApplet {
     }
 
     private void rectangleSpawnLocationSpecial() {
-        fill(255, 0 ,0);
+        
          for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
 
 
@@ -77,7 +89,7 @@ public class Sketch extends PApplet {
         }
     }
     private void fallingRectangleSpecial(int speedSpecial) {
-        fill(255, 0, 0);
+        fill(powerUpColors[randomColor]); //fills it thta specific color
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
             rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
             rectYSpecial[rectMultipleSpecial] += speedSpecial;
@@ -93,7 +105,7 @@ public class Sketch extends PApplet {
 
                 score++;
 
-                // Respawn rectangle at top so it doesn't continue falling
+                // Respawn rectangle at top so it doesn't continue fallingn - reuses the same rectangle
                 rectY[rectMultiple] = (int) random(-1500, 0);
                 rectX[rectMultiple] = (int) random(0, width / 40) * 40;
 
@@ -136,12 +148,12 @@ public class Sketch extends PApplet {
 
     public void moveCauldron()
     {
-            if(keyPressed && key == 'a'  && cauldronX >= 50)
+            if(keyPressed && (key == 'a' || key == CODED && keyCode == LEFT )&& cauldronX >= 50)
             {
                 cauldronX -= 10;
             }
 
-            if(keyPressed && key == 'd'  && cauldronX <= 550)
+            if(keyPressed && (key == 'd' || key == CODED && keyCode == RIGHT)  && cauldronX <= 550)
             {
                 cauldronX += 10;
             }
