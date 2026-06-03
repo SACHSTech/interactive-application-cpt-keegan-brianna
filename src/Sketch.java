@@ -44,7 +44,7 @@ public class Sketch extends PApplet {
         powerUpPoints[3] = 8;  // Yellow 
 
         randomColor = (int) random(0,powerUpColors.length);// uses random to get a random color from the powerUpColor array
-
+        rectangleSpawnLocationSpecial();
         rectangleSpawnLocation(); // In setup to help get each rectangle from the array
         }
 
@@ -55,8 +55,10 @@ public class Sketch extends PApplet {
         cauldron();
         moveCauldron();
         collectObjects();
-
+        
         fallingRectangleSpecial(4);
+        //mushrooms(300,250);
+        
 
 
     }
@@ -80,6 +82,7 @@ public class Sketch extends PApplet {
         fill(23,23,23);
         for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++){
             rect(rectX[rectMultiple], rectY[rectMultiple], 40, 20); // creates the rectangle
+            
             rectY[rectMultiple] += speed;
         }
     
@@ -95,17 +98,17 @@ public class Sketch extends PApplet {
         }
     }
     private void fallingRectangleSpecial(int speedSpecial) {
-       randomColor = (int) random(0,powerUpColors.length);
        
+        //fill(powerUpColors[randomColor]); //fills it thta specific color
+
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
                        
-
-            rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
+            mushrooms(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial],powerUpColors[randomColor] );
+            //rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
             rectYSpecial[rectMultipleSpecial] += speedSpecial;
         }
-        //its flashing 
+        
     
-         fill(powerUpColors[randomColor]); //fills it thta specific color
 
     }
 
@@ -170,6 +173,24 @@ public class Sketch extends PApplet {
             {
                 cauldronX += 10;
             }
+    }
+
+    public void mushrooms(int x, int y, int colorMushroom)
+    {
+       //stem
+        noStroke();
+        fill(240, 220, 194);
+        ellipse(x,y+20,25,30);
+        //top
+        //fill(186, 38, 15);
+        fill(colorMushroom);
+        ellipse(x,y,50, 30);
+        //spots
+        fill(240, 220, 194);
+        circle(x-10,y,7);
+        circle(x+5, y-10, 10);
+        circle(x+18, y+5, 5);
+
     }
 
 }
