@@ -51,15 +51,14 @@ public class Sketch extends PApplet {
     @Override
     public void draw() {
         background(244);
-        fallingRectangle(3);
-        cauldron();
+       fallingRectangle(3);
+       cauldron();
         moveCauldron();
         collectObjects();
         
-        fallingRectangleSpecial(4);
-        //mushrooms(300,250);
-        
-
+       fallingRectangleSpecial(4);
+        //leaf(350,200);        
+        //flower( 200,200);
 
     }
     /**
@@ -99,12 +98,25 @@ public class Sketch extends PApplet {
     }
     private void fallingRectangleSpecial(int speedSpecial) {
        
-        //fill(powerUpColors[randomColor]); //fills it thta specific color
+        fill(powerUpColors[randomColor]); //fills it thta specific color
 
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
-                       
-            mushrooms(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial],powerUpColors[randomColor] );
-            //rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
+            if(randomColor == 0) //red
+            {
+            mushrooms(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
+            }   
+            if(randomColor == 1) //green
+            {
+            leaf(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
+            } 
+            if(randomColor == 3) //yellow
+            {
+            flower(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
+            }    
+            else{
+                rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
+
+            }   
             rectYSpecial[rectMultipleSpecial] += speedSpecial;
         }
         
@@ -175,15 +187,15 @@ public class Sketch extends PApplet {
             }
     }
 
-    public void mushrooms(int x, int y, int colorMushroom)
+    public void mushrooms(int x, int y)
     {
        //stem
         noStroke();
         fill(240, 220, 194);
         ellipse(x,y+20,25,30);
         //top
-        //fill(186, 38, 15);
-        fill(colorMushroom);
+        fill(186, 38, 15);
+        //fill(colorMushroom);
         ellipse(x,y,50, 30);
         //spots
         fill(240, 220, 194);
@@ -191,6 +203,35 @@ public class Sketch extends PApplet {
         circle(x+5, y-10, 10);
         circle(x+18, y+5, 5);
 
+    }
+
+    public void leaf(int x, int y)
+    {
+        noStroke();
+        fill(78, 130, 70);
+        ellipse(x,y,40,30);
+        triangle(x-14, y-11, x-14, y+11, x-35, y);
+        strokeWeight(2);
+        stroke(161, 179, 159);
+        line(x-35, y, x + 30, y);
+
+    }
+
+    public void flower(int x, int y)
+    {
+       //petals
+        noStroke();
+        fill(250, 240, 105);
+        ellipse(x,y-10, 15, 20);
+        ellipse(x+10,y,15, 20);
+        ellipse(x-10,y,15, 20);
+        ellipse(x+5,y+10,15, 20);
+        ellipse(x-5,y+10,15, 20);
+       //middle
+        fill(245, 177, 105);
+        circle(x,y,15);
+        
+        
     }
 
 }
