@@ -119,6 +119,7 @@ public class Sketch extends PApplet {
                 } else {
                     insideCauldron = color(0, 150, 255);
                 }
+                insideCauldron = color(255, 255, 255);
                 score++;
 
                 // Respawn rectangle at top so it doesn't continue fallingn - reuses the same rectangle
@@ -127,6 +128,28 @@ public class Sketch extends PApplet {
 
             }
 
+        for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
+            if (rectYSpecial[rectMultipleSpecial] >= 290 && rectYSpecial[rectMultipleSpecial] <= 320 && rectXSpecial[rectMultipleSpecial] >= cauldronX - 60 && rectXSpecial[rectMultipleSpecial] <= cauldronX + 60) {
+
+            // Set the cauldron color to match the item you caught
+            if (randomColor == 0){
+                insideCauldron = color(186, 38, 15); // Mushroom Red
+            } else if (randomColor == 1){
+                insideCauldron = color(78, 130, 70);   // Leaf Green
+            } else if (randomColor == 2){
+                insideCauldron = color(0, 150, 255);   // Water Drop Blue (Fixed typo swapping Blue/Yellow)
+            } else {
+                insideCauldron = color(250, 240, 105); // Flower Yellow
+            }
+
+            score += powerUpPoints[randomColor]; 
+
+            // Respawn and pick a new random type object
+            rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
+            rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
+            randomColor = (int) random(0,4); 
+        }
+    }
         }
 
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
