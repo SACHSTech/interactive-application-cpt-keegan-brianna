@@ -16,7 +16,7 @@ public class Sketch extends PApplet {
     int score = 0;
     int randomColor;
     int[] powerUpPoints = new int[4];// array to assign a specific amount of points to each color variation of powerUp
-    
+    int insideCauldron = color(255, 255, 255);
     
 
     public static void main(String[] args) {
@@ -109,7 +109,16 @@ public class Sketch extends PApplet {
         for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++) {
             // Must be within a specific y coordinate at all times, and mnust be within the caludron's bondaries hence the -60, +60
             if (rectY[rectMultiple] >= 290 && rectY[rectMultiple] <= 320 && rectX[rectMultiple] >= cauldronX - 60 && rectX[rectMultiple] <= cauldronX + 60) {
-
+                
+                if (randomColor == 0){
+                    insideCauldron = color(186, 38, 15);
+                } else if (randomColor == 1){
+                    insideCauldron = color(78, 130, 70);
+                } else if (randomColor == 2){
+                    insideCauldron = color(250, 240, 105);
+                } else {
+                    insideCauldron = color(0, 150, 255);
+                }
                 score++;
 
                 // Respawn rectangle at top so it doesn't continue fallingn - reuses the same rectangle
@@ -150,7 +159,7 @@ public class Sketch extends PApplet {
         ellipse(cauldronX, 310, 120, 30);
         //content
         noStroke();
-        fill(250,250,250);
+        fill(insideCauldron);
         ellipse(cauldronX, 310, 90, 20);
         return cauldronX;
     }
@@ -223,7 +232,5 @@ public class Sketch extends PApplet {
     
         // pointed top
         triangle(x - 10, y, x + 10, y, x, y - 18);
-    
-    
     }
 }
