@@ -92,9 +92,9 @@ public class Sketch extends PApplet {
             else if (randomColor == 1) { // Green leaf = 4 points
             leaf(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
             }
-            else if (randomColor == 2) { // Blue rectangle = 6 points
+            else if (randomColor == 2) { // Water Droplet = 6 points
            
-            rect(rectXSpecial[rectMultipleSpecial],rectYSpecial[rectMultipleSpecial], 40, 20);
+            waterDrop(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
             }
             else if (randomColor == 3) { // Yellow flower = 8 points
             flower(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
@@ -214,4 +214,16 @@ public class Sketch extends PApplet {
         
     }
 
+    public void waterDrop(int x, int y){
+        noStroke();
+    
+        // main drop
+        fill(0, 150, 255);
+        ellipse(x, y, 20, 30);
+    
+        // pointed top
+        triangle(x - 10, y, x + 10, y, x, y - 18);
+    
+    
+    }
 }
