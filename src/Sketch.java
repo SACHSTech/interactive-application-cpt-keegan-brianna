@@ -14,7 +14,6 @@ public class Sketch extends PApplet {
     int cauldronX = 300;
     int cauldronY = 350;
     int score = 0;
-    int[] powerUpColors = new int[4]; //array for all 4 of the possible powerUp colors 
     int randomColor;
     int[] powerUpPoints = new int[4];// array to assign a specific amount of points to each color variation of powerUp
     
@@ -31,20 +30,14 @@ public class Sketch extends PApplet {
 
     @Override
     public void setup() {
-        
-        //powerup color master list 
-        powerUpColors[0] = color(255, 0, 0);   // Red
-        powerUpColors[1] = color(0, 255, 0);   // Green
-        powerUpColors[2] = color(0, 0, 255);   // Blue
-        powerUpColors[3] = color(255, 255, 0); // Yellow
 
         powerUpPoints[0] = 2;   // Red
         powerUpPoints[1] = 4;  // Green
         powerUpPoints[2] = 6;  // Blue 
         powerUpPoints[3] = 8;  // Yellow 
 
-        randomColor = (int) random(0,powerUpColors.length);// uses random to get a random color from the powerUpColor array
-        rectangleSpawnLocationSpecial();
+        randomColor = (int) random(0, 4);// uses random to get a random color from the powerUpColor array
+
         rectangleSpawnLocation(); // In setup to help get each rectangle from the array
         }
 
@@ -88,39 +81,27 @@ public class Sketch extends PApplet {
 
     }
 
-    private void rectangleSpawnLocationSpecial() {
-        
-         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
-
-            rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
-            rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
-        }
-    }
+    
     private void fallingRectangleSpecial(int speedSpecial) {
        
-        fill(powerUpColors[randomColor]); //fills it thta specific color
-
+        
         for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++){
-            if(randomColor == 0) //red
-            {
-            mushrooms(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
-            }   
-            if(randomColor == 1) //green
-            {
-            leaf(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
-            } 
-            if(randomColor == 3) //yellow
-            {
-            flower(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial] );
-            }    
-            else{
-                rect(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial], 40, 20); // creates the rectangle
+            if (randomColor == 0) { // Red mushroom = 2 points
+            mushrooms(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
+            }
+            else if (randomColor == 1) { // Green leaf = 4 points
+            leaf(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
+            }
+            else if (randomColor == 2) { // Blue rectangle = 6 points
+           
+            rect(rectXSpecial[rectMultipleSpecial],rectYSpecial[rectMultipleSpecial], 40, 20);
+            }
+            else if (randomColor == 3) { // Yellow flower = 8 points
+            flower(rectXSpecial[rectMultipleSpecial], rectYSpecial[rectMultipleSpecial]);
+            }
 
-            }   
             rectYSpecial[rectMultipleSpecial] += speedSpecial;
         }
-        
-    
 
     }
 
@@ -147,7 +128,7 @@ public class Sketch extends PApplet {
                 // Respawn rectangle at top so it doesn't continue falling
                 rectYSpecial[rectMultipleSpecial] = (int) random(-1500, 0);
                 rectXSpecial[rectMultipleSpecial] = (int) random(0, width / 40) * 40;
-                randomColor = (int) random(0,powerUpColors.length);
+                randomColor = (int) random(0,4);
 
 
             }
@@ -230,7 +211,6 @@ public class Sketch extends PApplet {
        //middle
         fill(245, 177, 105);
         circle(x,y,15);
-        
         
     }
 
