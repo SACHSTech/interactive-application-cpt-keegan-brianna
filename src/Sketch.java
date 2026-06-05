@@ -66,6 +66,10 @@ public class Sketch extends PApplet {
       rectY[rectMultiple] = (int) random(-1500, 0);
     }
   }
+
+  /**
+   * @param speed type in an interger to determine the speed of the falling rectangle
+   */
   private void fallingRectangle(int speed) {
     fill(23, 23, 23);
     for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++) {
@@ -75,7 +79,9 @@ public class Sketch extends PApplet {
     }
 
   }
-
+    /**
+     * @param speedSpecial type in an interger to determine the speed of the special object
+     */
   private void fallingRectangleSpecial(int speedSpecial) {
 
     for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
