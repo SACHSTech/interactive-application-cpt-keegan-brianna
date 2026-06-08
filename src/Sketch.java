@@ -1,7 +1,8 @@
 import processing.core.PApplet;
 
 /**
- * Template for programs with Processing graphics output.
+ * This program will generate falling rectangles and a cauldron that will try to collect them. Every now and then random special blocks will fall
+ * and those will give you more points. Each rectangle is 1 point but a special object can drop anywhere from 2, 4, 6, or 8 points.
  * @author Keegan
  * @author Brianna
  */
