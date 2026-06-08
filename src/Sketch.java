@@ -53,11 +53,11 @@ public class Sketch extends PApplet {
     //flower( 200,200);
 
   }
+
   /**
    * Creates multiple rectangles from 0-9 and gives it a random x and y value. The -400 y is so the blocks spawn at different heights and fall at different levels
-   * Width / 40 makes it so there's columns. (600/40 = 15) Then once it generates a random number (3, 4, 2, 5, 15, etc) it'll * it by 40 to fit the entire width
+   * Width / 40 makes it so there's columns. (600/40 = 15) Then once it generates a random number (3, 4, 2, 5, 15, etc) it'll * it by 40 to fit the entire width.
    */
-
   private void rectangleSpawnLocation() {
     fill(23, 23, 32);
     for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++) {
@@ -68,7 +68,7 @@ public class Sketch extends PApplet {
   }
 
   /**
-   * @param speed type in an interger to determine the speed of the falling rectangle
+   * @param speed type in an interger to determine the speed of the falling rectangle.
    */
   private void fallingRectangle(int speed) {
     fill(23, 23, 23);
@@ -80,8 +80,10 @@ public class Sketch extends PApplet {
 
   }
   /**
-   * @param speedSpecial type in an interger to determine the speed of the special object
-   */
+  * Creates the falling special object.
+  * The object that spawns depends on the randomColour value.
+  * @param speedSpecial the speed at which the special object falls.
+  */
   private void fallingRectangleSpecial(int speedSpecial) {
 
     for (int rectMultipleSpecial = 0; rectMultipleSpecial < rectXSpecial.length; rectMultipleSpecial++) {
@@ -100,7 +102,10 @@ public class Sketch extends PApplet {
     }
 
   }
-
+  /**
+  * Checks if the cauldron has collected any normal rectangles or special objects. Updates the score, changes the cauldron colour 
+  * when a special item is collected, and respawns collected objects.
+  */
   public void collectObjects() {
     for (int rectMultiple = 0; rectMultiple < rectX.length; rectMultiple++) {
       // Must be within a specific y coordinate at all times, and mnust be within the caludron's bondaries hence the -60, +60
@@ -142,6 +147,10 @@ public class Sketch extends PApplet {
     text("Score: " + score, 20, 30);
   }
 
+  /**
+  * Draws the cauldron on the screen.
+  * @return the current x-coordinate of the cauldron.
+  */
   public int cauldron() {
 
     //pot
@@ -156,6 +165,9 @@ public class Sketch extends PApplet {
     return cauldronX;
   }
 
+  /**
+  * Moves the cauldron left or right using the A/D keys or the left/right arrow keys.
+  */
   public void moveCauldron() {
     if (keyPressed && (key == 'a' || key == CODED && keyCode == LEFT) && cauldronX >= 50) {
       cauldronX -= 10;
@@ -166,6 +178,11 @@ public class Sketch extends PApplet {
     }
   }
 
+  /**
+  * Draws a mushroom power-up at a random location.
+  * @param x the x-coordinate of the mushroom.
+  * @param y the y-coordinate of the mushroom.
+  */
   public void mushrooms(int x, int y) {
     //stem
     noStroke();
@@ -183,6 +200,11 @@ public class Sketch extends PApplet {
 
   }
 
+  /**
+  * Draws a leaf power-up at a random location.
+  * @param x the x-coordinate of the leaf.
+  * @param y the y-coordinate of the leaf.
+  */
   public void leaf(int x, int y) {
     noStroke();
     fill(78, 130, 70);
@@ -194,6 +216,11 @@ public class Sketch extends PApplet {
 
   }
 
+  /**
+  * Draws a flower power-up at a random location.
+  * @param x the x-coordinate of the flower.
+  * @param y the y-coordinate of the flower.
+  */
   public void flower(int x, int y) {
     //petals
     noStroke();
@@ -209,6 +236,11 @@ public class Sketch extends PApplet {
 
   }
 
+  /**
+  * Draws a water droplet power-up a random location.
+  * @param x the x-coordinate of the water droplet.
+  * @param y the y-coordinate of the water droplet.
+  */
   public void waterDrop(int x, int y) {
     noStroke();
 
